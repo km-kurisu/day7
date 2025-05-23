@@ -13,6 +13,7 @@ import achievements from '../public/achievements.jpg';
 import goal from '../public/goal.jpg';
 import self from '../public/self.jpg';
 import Design4 from '../public/Design4.png';
+import Cookies from "js-cookie";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,6 +21,7 @@ export default function Home() {
   const [loadingJoke, setLoadingJoke] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState(false);
 
   // Toggle dark class on <body>
   useEffect(() => {
@@ -65,6 +67,19 @@ export default function Home() {
     setMenuOpen(false);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Check for cookie consent on mount
+  useEffect(() => {
+    if (Cookies.get("cookie_consent") === "true") {
+      setCookieConsent(true);
+    }
+  }, []);
+
+  // Handle consent
+  const handleAcceptCookies = () => {
+    Cookies.set("cookie_consent", "true", { expires: 365 });
+    setCookieConsent(true);
   };
 
   return (
@@ -370,6 +385,21 @@ export default function Home() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
           </svg>
         </button>
+      )}
+
+      {/* Cookie Consent Banner */}
+      {!cookieConsent && (
+        <div className="fixed bottom-0 left-0 w-full bg-white dark:bg-[#181A2A] text-[#52154E] dark:text-slate-200 p-4 flex flex-col md:flex-row items-center justify-between z-[99999] shadow-lg">
+          <span>
+            This website uses cookies to enhance the user experience. By continuing, you agree to our use of cookies.
+          </span>
+          <button
+            className="mt-2 md:mt-0 ml-0 md:ml-4 px-4 py-2 bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white rounded font-stardom"
+            onClick={handleAcceptCookies}
+          >
+            Accept
+          </button>
+        </div>
       )}
     </div>
   );
