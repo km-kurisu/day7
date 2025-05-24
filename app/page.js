@@ -118,7 +118,7 @@ export default function Home() {
               <li>
                 <a
                   href="#about"
-                  className="hover:underline text-[#52154E] font-stardom text-lg"
+                  className="hover:underline text-[#52154E]  dark:text-slate-300 font-stardom text-lg"
                   onClick={() => handleNavClick("about")}
                 >
                   About
@@ -127,7 +127,7 @@ export default function Home() {
               <li>
                 <a
                   href="#skills"
-                  className="hover:underline text-[#52154E] font-stardom text-lg"
+                  className="hover:underline text-[#52154E]  dark:text-slate-300 font-stardom text-lg"
                   onClick={() => handleNavClick("skills")}
                 >
                   Skills
@@ -136,7 +136,7 @@ export default function Home() {
               <li>
                 <a
                   href="#achievements"
-                  className="hover:underline text-[#52154E] font-stardom text-lg"
+                  className="hover:underline text-[#52154E]  dark:text-slate-300 font-stardom text-lg"
                   onClick={() => handleNavClick("achievements")}
                 >
                   Achievements
@@ -145,7 +145,7 @@ export default function Home() {
               <li>
                 <a
                   href="#goals"
-                  className="hover:underline text-[#52154E] font-stardom text-lg"
+                  className="hover:underline text-[#52154E]  dark:text-slate-300 font-stardom text-lg"
                   onClick={() => handleNavClick("goals")}
                 >
                   Goals
@@ -154,7 +154,7 @@ export default function Home() {
               <li>
                 <a
                   href="#personal"
-                  className="hover:underline text-[#52154E] font-stardom text-lg"
+                  className="hover:underline text-[#52154E]  dark:text-slate-300 font-stardom text-lg"
                   onClick={() => handleNavClick("personal")}
                 >
                   Personal
@@ -198,7 +198,7 @@ export default function Home() {
                   href="/KamleshMistry.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mobile-menu-link bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2 dark:text-gray-700"
+                  className="mobile-menu-link bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2  dark:text-slate-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   Resume
