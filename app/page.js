@@ -1,6 +1,6 @@
 'use client';
 import Head from "next/head";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { MdOutlineDarkMode, MdMenu, MdClose } from "react-icons/md";
 import { 
   FiInstagram ,
@@ -22,6 +22,11 @@ export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookieConsent, setCookieConsent] = useState(false);
+
+  // Refs for card sections
+  const achievementsRef = useRef(null);
+  const goalsRef = useRef(null);
+  const personalRef = useRef(null);
 
   // Toggle dark class on <body>
   useEffect(() => {
@@ -59,7 +64,38 @@ export default function Home() {
   }, []);
 
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Smooth scroll with bounce effect
+    const bounceScroll = () => {
+      const start = window.scrollY;
+      const duration = 900;
+      const bounce = t => {
+        // EaseOutBounce
+        if (t < (1 / 2.75)) {
+          return 7.5625 * t * t;
+        } else if (t < (2 / 2.75)) {
+          t -= (1.5 / 2.75);
+          return 7.5625 * t * t + 0.75;
+        } else if (t < (2.5 / 2.75)) {
+          t -= (2.25 / 2.75);
+          return 7.5625 * t * t + 0.9375;
+        } else {
+          t -= (2.625 / 2.75);
+          return 7.5625 * t * t + 0.984375;
+        }
+      };
+      let startTime = null;
+      function animateScroll(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const time = Math.min(1, (currentTime - startTime) / duration);
+        const eased = 1 - bounce(1 - time);
+        window.scrollTo(0, Math.ceil(start * (1 - eased)));
+        if (time < 1 && window.scrollY > 0) {
+          requestAnimationFrame(animateScroll);
+        }
+      }
+      requestAnimationFrame(animateScroll);
+    };
+    bounceScroll();
   };
 
   // Close menu on navigation
@@ -81,6 +117,25 @@ export default function Home() {
     Cookies.set("cookie_consent", "true", { expires: 365 });
     setCookieConsent(true);
   };
+
+  // Animation on scroll for cards
+  useEffect(() => {
+    const cards = [achievementsRef.current, goalsRef.current, personalRef.current];
+    const observer = new window.IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("bounce-on-view");
+            // Remove the class after animation so it can re-trigger if needed
+            setTimeout(() => entry.target.classList.remove("bounce-on-view"), 800);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    cards.forEach(card => card && observer.observe(card));
+    return () => cards.forEach(card => card && observer.unobserve(card));
+  }, []);
 
   return (
     <div className="bg-animated-gradient min-h-screen">
@@ -165,7 +220,7 @@ export default function Home() {
                   href="/KamleshMistry.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2 dark:text-gray-700"
+                  className="bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2 dark:text-slate-300"
                 >
                   Resume
                 </a>
@@ -198,7 +253,7 @@ export default function Home() {
                   href="/KamleshMistry.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mobile-menu-link bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2  dark:text-slate-300"
+                  className="mobile-menu-link bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2 dark:text-slate-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   Resume
@@ -276,7 +331,11 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:flex lg:gap-10 flex-col lg:flex-row">
-            <div id="achievements" className="text-left shadow-xl p-6 md:p-10 rounded-xl my-6 w-full lg:my-10 lg:flex-1 bg-animated-card dark:shadow-2xl">
+            <div
+              id="achievements"
+              ref={achievementsRef}
+              className="text-left shadow-xl p-6 md:p-10 rounded-xl my-6 w-full lg:my-10 lg:flex-1 bg-animated-card dark:shadow-2xl"
+            >
               <Image src={achievements} width={100} height={100} />
               <h3 className="text-2xl font-arrayb font-medium pt-8 pb-2 text-[#52154E] dark:text-teal-300 ">
                 Achievements
@@ -290,7 +349,11 @@ export default function Home() {
               <p className="text-gray-800 font-stardom py-1 dark:text-emerald-400">Pursuing CS50X Game Development Online Course by Harvard</p>
               <p className="text-gray-800 font-stardom py-1 dark:text-emerald-400">Completed DotNET and SQL training course led by Kantascrypt</p>
             </div>
-            <div id="goals" className="text-left shadow-xl p-6 md:p-10 rounded-xl my-6 w-full lg:my-10 lg:flex-1 bg-animated-card dark:shadow-2xl">
+            <div
+              id="goals"
+              ref={goalsRef}
+              className="text-left shadow-xl p-6 md:p-10 rounded-xl my-6 w-full lg:my-10 lg:flex-1 bg-animated-card dark:shadow-2xl"
+            >
               <Image src={goal} width={100} height={100} />
               <h3 className="text-2xl font-arrayb font-medium pt-8 pb-2 text-[#52154E] dark:text-teal-300 ">
                 Future Goals
@@ -304,7 +367,11 @@ export default function Home() {
               <p className="text-gray-800 font-stardom py-1 dark:text-emerald-400">work towards creating my own product based startup</p>
               <p className="text-gray-800 font-stardom py-1 dark:text-emerald-400">Atleast Visit japan Once</p>
             </div>
-            <div id="personal" className="text-left shadow-xl p-6 md:p-10 rounded-xl my-6 w-full lg:my-10 lg:flex-1 bg-animated-card dark:shadow-2xl">
+            <div
+              id="personal"
+              ref={personalRef}
+              className="text-left shadow-xl p-6 md:p-10 rounded-xl my-6 w-full lg:my-10 lg:flex-1 bg-animated-card dark:shadow-2xl"
+            >
               <Image src={self} width={100} height={100} />
               <h3 className="text-2xl font-arrayb font-medium pt-8 pb-2 text-[#52154E] dark:text-teal-300 ">
                 Personal Side
