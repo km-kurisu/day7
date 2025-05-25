@@ -220,7 +220,7 @@ export default function Home() {
                   href="/KamleshMistry.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2 dark:text-slate-300"
+                  className="bg-[#0E6BA8] dark:bg-[#63458A] text-white px-4 py-2 rounded-sm ml-2 dark:text-slate-300"
                 >
                   Resume
                 </a>
@@ -253,7 +253,7 @@ export default function Home() {
                   href="/KamleshMistry.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mobile-menu-link bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white px-4 py-2 rounded-sm ml-2 dark:text-slate-300"
+                  className="mobile-menu-link bg-[#0E6BA8] dark:bg-[#63458A] text-white px-4 py-2 rounded-sm ml-2 dark:text-slate-300"
                   onClick={() => setMenuOpen(false)}
                 >
                   Resume
@@ -324,7 +324,7 @@ export default function Home() {
                 href="https://km-kurisu.github.io/Bibliotheca/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white rounded-full font-stardom shadow-lg hover:from-teal-500 hover:to-blue-600 transition-all"
+                className="px-6 py-3 bg-[#0E6BA8] dark:bg-[#63458A] text-white rounded-full font-stardom shadow-lg hover:bg-[#186bb2] dark:hover:bg-[#7c5bb3] transition-all"
               >
                 Visit My Book Shop
               </a>
@@ -423,7 +423,7 @@ export default function Home() {
             ) : null}
             <button
               onClick={fetchJoke}
-              className="mt-4 px-4 py-2 font-stardom bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white rounded-full shadow card-flare hover:from-teal-500 hover:to-blue-600 transition-all"
+              className="mt-4 px-4 py-2 font-stardom bg-[#0E6BA8] dark:bg-[#63458A] text-white rounded-full shadow card-flare hover:bg-[#186bb2] dark:hover:bg-[#7c5bb3] transition-all"
               disabled={loadingJoke}
             >
               {loadingJoke ? "Loading..." : "Get Another Joke"}
@@ -502,7 +502,7 @@ export default function Home() {
       {showScrollTop && (
         <button
           onClick={handleScrollToTop}
-          className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+          className="fixed bottom-8 right-8 z-50 bg-[#0E6BA8] dark:bg-[#63458A] text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
           aria-label="Scroll to top"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -518,7 +518,7 @@ export default function Home() {
             This website uses cookies to enhance the user experience. By continuing, you agree to our use of cookies.
           </span>
           <button
-            className="mt-2 md:mt-0 ml-0 md:ml-4 px-4 py-2 bg-gradient-to-r from-[#0E6BA8] to-[#BCB6FF] text-white rounded font-stardom"
+            className="mt-2 md:mt-0 ml-0 md:ml-4 px-4 py-2 bg-[#0E6BA8] dark:bg-[#63458A] text-white rounded font-stardom"
             onClick={handleAcceptCookies}
           >
             Accept
