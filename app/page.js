@@ -431,6 +431,49 @@ export default function Home() {
           </div>
         </section>
         <section>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFK6RWYMT8"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-WFK6RWYMT8');
+            `,
+          }}
+        />
+        <section className="flex flex-col items-center justify-center my-8">
+          <div className="bg-white dark:bg-[#181A2A] rounded-xl shadow-lg p-6 max-w-4xl w-full text-center">
+            <h3 className="text-2xl font-arrayr text-[#52154E] dark:text-[#BCB6FF] mb-4">
+              Website Analytics (Last 7 Days)
+            </h3>
+            {/* Responsive Google Analytics Data Studio Embed */}
+            <div className="relative w-full" style={{ paddingTop: "66.66%" /* 3:2 aspect ratio */ }}>
+              <iframe
+                title="Google Analytics Dashboard"
+                src="https://lookerstudio.google.com/embed/reporting/dd371795-f59f-4df7-9aab-3960cad8ef29/page/kIV1C"
+                frameBorder="0"
+                style={{
+                  border: 0,
+                  borderRadius: "1rem",
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
+                allowFullScreen
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+              ></iframe>
+            </div>
+            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+              Powered by Google Analytics & Looker Studio
+            </p>
+          </div>
+          </section>
+        </section>
+        <section>
          <div>
           <footer className="text-[#63458A] text-center py-4 font-nippo dark:text-emerald-400">
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 mt-2 text-base">
@@ -440,7 +483,7 @@ export default function Home() {
               </span>
               <span className="flex items-center gap-2">
                 <svg className="inline-block w-5 h-5 font-stardom text-teal-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 01-2.18 2A19.72 19.72 0 013 5.18 2 2 0 015 3h2.09a2 2 0 012 1.72c.13 1.05.37 2.07.72 3.05a2 2 0 01-.45 2.11l-.27.27a16 16 0 006.29 6.29l.27-.27a2 2 0 012.11-.45c.98.35 2 .59 3.05.72A2 2 0 0122 16.92z"/></svg>
-                <a href="tel:+919876543210" className="underline hover:text-teal-600">+91 81778 66278</a>
+                <a href="tel:+91 81778 66278" className="underline hover:text-teal-600">+91 81778 66278</a>
               </span>
               <span className="flex items-center gap-2">
                 <svg className="inline-block w-5 h-5 font-stardom text-teal-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
